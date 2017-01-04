@@ -1,3 +1,3 @@
 # Koa-movies
 
-A database movie using koa
+A movie database using koa
