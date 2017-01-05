@@ -30,14 +30,14 @@ class Router{
    if(controllers.indexOf(controller+".js") < 0){
      // No controller found : 404
      console.error("Controller "+controller+" not found.");
-     yield next;
+     ctx.response.status = 404;
      return;
    }
    
    let controllerObject = require(path.join(this._controllerDirectory, controller+".js"));
    if(!controllerObject || !controllerObject[action]){
      console.error("Action "+controller+"."+action+" not found.");
-     yield next;
+     ctx.response.status = 404;
      return;
    }
    

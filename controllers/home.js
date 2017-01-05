@@ -1,5 +1,5 @@
 module.exports = {
-  index: function*(next, ... vars){
+  *index(next, ... vars){
     this.body = "Index !";
   }
 };
