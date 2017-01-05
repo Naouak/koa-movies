@@ -22,10 +22,8 @@ class Router{
   
   *route(method, url, ctx, next){
    let [, controller = "home", action = "index", ...vars] = url.split('/');
-   
    let controllers = yield this.getControllers();
    
-   console.log(controllers);
    
    if(controllers.indexOf(controller+".js") < 0){
      // No controller found : 404
@@ -35,6 +33,9 @@ class Router{
    }
    
    let controllerObject = require(path.join(this._controllerDirectory, controller+".js"));
+   
+   action=action||"index";
+   
    if(!controllerObject || !controllerObject[action]){
      console.error("Action "+controller+"."+action+" not found.");
      ctx.response.status = 404;

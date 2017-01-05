@@ -4,8 +4,12 @@
   "dependencies": {
     "koa": "^1.2.4"
   },
-
   "scripts": {
-    "server": "node app.js"
+    "server": "node app.js",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.1.2"
   }
 }
