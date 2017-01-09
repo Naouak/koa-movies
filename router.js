@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const winston = require('winston');
 
 class Router {
   constructor(options = {}) {
@@ -27,7 +28,7 @@ class Router {
 
     if (controllers.indexOf(`${controller}.js`) < 0) {
       // No controller found : 404
-      console.error(`Controller ${controller} not found.`);
+      winston.error(`Controller ${controller} not found.`);
       ctx.response.status = 404;
       return;
     }
@@ -38,7 +39,7 @@ class Router {
     const finalAction = action || 'index';
 
     if (!controllerObject || !controllerObject[finalAction]) {
-      console.error(`Action ${controller}.${finalAction} not found.`);
+      winston.error(`Action ${controller}.${finalAction} not found.`);
       ctx.response.status = 404;
       return;
     }

@@ -2,7 +2,8 @@
   "name": "koa-movies",
   "version": "0.0.1",
   "dependencies": {
-    "koa": "^1.2.4"
+    "koa": "^1.2.4",
+    "winston": "^2.3.0"
   },
   "scripts": {
     "server": "node app.js",
