@@ -16,8 +16,9 @@ describe('Router', () => {
 
     router.getControllers()
       .then((files) => {
-        files.should.have.lengthOf(1);
-        files.should.have.property(0, 'test.js');
+        files.should.have.lengthOf(2);
+        files.should.have.property(0, 'home.js');
+        files.should.have.property(1, 'test.js');
         done();
       })
       .catch(done);
@@ -51,6 +52,20 @@ describe('Router', () => {
       .then(value => (route.next(value)))
       .then((actionYield) => {
         actionYield.value.should.equal('tagada');
+        done();
+      })
+      .catch(done);
+  });
+
+  it('should redirect to home.index if no controller is provided', (done) => {
+    const router = new Router({ directory: path.join(__dirname, 'fixtures/controllers') });
+    const ctx = {};
+    const route = router.route(null, '/', ctx);
+
+    route.next().value
+      .then(value => (route.next(value)))
+      .then(() => {
+        ctx.body.should.equal('home.index');
         done();
       })
       .catch(done);

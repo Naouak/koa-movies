@@ -22,9 +22,10 @@ class Router {
   }
 
   * route(method, url, ctx, next) {
-    const [, controller = 'home', action = 'index', ...vars] = url.split('/');
+    const [, requestController = 'home', action = 'index', ...vars] = url.split('/');
     const controllers = yield this.getControllers();
 
+    const controller = requestController || 'home';
 
     if (controllers.indexOf(`${controller}.js`) < 0) {
       // No controller found : 404
@@ -51,6 +52,7 @@ class Router {
   middleware() {
     const self = this;
     return function* middleware(next) {
+      winston.info(`${this.request.method} ${this.request.url}`);
       yield* self.route(this.request.method, this.request.url, this, next);
     };
   }

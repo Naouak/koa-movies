@@ -3,7 +3,8 @@
   "rules": {
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
-    "max-len": [2,120]
+    "max-len": [2,120],
+    "require-yield": "off"
   },
   "env": {
     "node": true
